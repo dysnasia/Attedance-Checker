@@ -1,38 +1,21 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const resultContainer = document.getElementById('qr-result');
-    const resultList = document.getElementById('result-list'); // List to display results
-  
+    const qrResult = document.getElementById('qr-result');
+
     function onScanSuccess(decodedText, decodedResult) {
-        // Create a new list item
-        const newItem = document.createElement('li');
-        newItem.textContent = decodedText; // Set the text of the list item to the QR code text
-  
-        // Append the new item to the result list
-        resultList.appendChild(newItem);
-  
-        // Optionally, clear the scanner if you want to stop scanning after a successful scan
-        html5QrcodeScanner.clear();
+        qrResult.textContent = `Scan result: ${decodedText}`;
     }
-  
-    // This method will trigger user permissions
-    Html5Qrcode.getCameras().then(devices => {
-        if (devices && devices.length) {
-            var cameraId = devices[0].id;
-            // Choose the rear camera if available
-            devices.forEach(device => {
-                if (device.label && device.label.includes('back')) {
-                    cameraId = device.id;
-                }
-            });
-  
-            const html5QrcodeScanner = new Html5Qrcode("reader", { fps: 20, qrbox: 250 });
-            html5QrcodeScanner.start(cameraId, {}, onScanSuccess)
-                .catch(err => {
-                    resultContainer.textContent = `Unable to start QR scanner: ${err}`;
-                });
+
+    const html5QrCode = new Html5Qrcode("reader");
+    Html5Qrcode.getCameras().then(cameras => {
+        if (cameras.length > 0) {
+            html5QrCode.start(cameras[0].id, {
+                fps: 10,
+                qrbox: { width: 250, height: 250 }
+            }, onScanSuccess);
+        } else {
+            console.error("No cameras found.");
         }
     }).catch(err => {
-        resultContainer.textContent = 'Error getting camera devices: ' + err;
+        console.error("Error getting cameras", err);
     });
-  });
-  
+});
