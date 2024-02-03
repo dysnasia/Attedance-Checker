@@ -4,7 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QR Code Scanner</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        #reader {
+            max-width: 500px;
+            width: 100%;
+            margin: auto;
+        }
+
+        #result-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #result-list li {
+            border: 1px solid #ddd;
+            margin-top: -1px; /* Prevent double borders */
+            background-color: #f6f6f6;
+            padding: 12px;
+            text-align: left;
+        }
+
+        @media (max-width: 600px) {
+            #reader {
+                width: 90%;
+                margin: auto;
+            }
+        }
+    </style>
 </head>
 <body>
     <h1>QR Code Scanner for Students</h1>
