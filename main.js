@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
 
-            const html5QrcodeScanner = new Html5Qrcode("reader", { fps: 10, qrbox: 250 });
+            const html5QrcodeScanner = new Html5Qrcode("reader", { fps: 30, qrbox: 250 });
             html5QrcodeScanner.start(cameraId, {}, onScanSuccess, onScanError)
                 .catch(err => {
                     resultContainer.textContent = `Unable to start QR scanner: ${err}`;
