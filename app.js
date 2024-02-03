@@ -28,7 +28,7 @@ Html5Qrcode.getCameras().then(devices => {
         html5QrcodeScanner.start(
           cameraId, 
           {
-              fps: 10,    // Optional frame per seconds for qr code scanning
+              fps: 30,    // Optional frame per seconds for qr code scanning
               qrbox: 250  // Optional if you want bounded box UI
           },
           onScanSuccess,
