@@ -1,22 +1,31 @@
-const videoElement = document.getElementById('qr-video');
 const resultContainer = document.getElementById('qr-result');
+function onScanSuccess(decodedText, decodedResult) {
+    console.log(`Code matched = ${decodedText}`, decodedResult);
+    resultContainer.textContent = `Scan result: ${decodedText}`;
+    // Stop scanning after the first scan successfully completes
+    html5QrcodeScanner.clear();
+}
 
-let scanner = new Instascan.Scanner({ video: videoElement });
+function onScanError(errorMessage) {
+    // handle scan error
+    console.error(errorMessage);
+    resultContainer.textContent = 'Error scanning QR Code: ' + errorMessage;
+}
 
-scanner.addListener('scan', function (content) {
-    console.log('QR Code content:', content);
-    resultContainer.textContent = `Scan result: ${content}`;
-    scanner.stop(); // Stop scanning after the first scan
-});
-
-Instascan.Camera.getCameras().then(function (cameras) {
-    if (cameras.length > 0) {
-        scanner.start(cameras[0]);
-    } else {
-        console.error('No cameras found.');
-        resultContainer.textContent = 'No cameras found.';
+// This method will trigger user permissions
+Html5Qrcode.getCameras().then(devices => {
+    /**
+     * devices would be an array of objects of type:
+     * { id: "id", label: "label" }
+     */
+    if (devices && devices.length) {
+        var cameraId = devices[0].id;
+        // .. use this to start scanning.
+        const html5QrcodeScanner = new Html5QrcodeScanner(
+            "qr-video", { fps: 10, qrbox: 250 }, /* verbose= */ false);
+        html5QrcodeScanner.render(onScanSuccess, onScanError);
     }
-}).catch(function (e) {
-    console.error(e);
-    resultContainer.textContent = e;
+}).catch(err => {
+    console.error(err);
+    resultContainer.textContent = 'Error getting camera devices: ' + err;
 });
