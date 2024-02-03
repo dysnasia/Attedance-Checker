@@ -1,38 +1,69 @@
 document.addEventListener('DOMContentLoaded', function () {
     const resultContainer = document.getElementById('qr-result');
-    const resultList = document.getElementById('result-list'); // List to display results
-  
-    function onScanSuccess(decodedText, decodedResult) {
-        // Create a new list item
-        const newItem = document.createElement('li');
-        newItem.textContent = decodedText; // Set the text of the list item to the QR code text
-  
-        // Append the new item to the result list
-        resultList.appendChild(newItem);
-  
-        // Optionally, clear the scanner if you want to stop scanning after a successful scan
-        html5QrcodeScanner.clear();
+    const resultList = document.getElementById('result-list');
+    const flipCameraButton = document.getElementById('flip-camera');
+    let scannedCodes = new Set();
+    let html5QrcodeScanner;
+    
+    // Function to detect mobile devices
+    function isMobileDevice() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     }
-  
-    // This method will trigger user permissions
-    Html5Qrcode.getCameras().then(devices => {
-        if (devices && devices.length) {
-            var cameraId = devices[0].id;
-            // Choose the rear camera if available
-            devices.forEach(device => {
-                if (device.label && device.label.includes('back')) {
-                    cameraId = device.id;
-                }
+
+    // Initialize QR Scanner
+    function startScanner(cameraId) {
+        html5QrcodeScanner = new Html5Qrcode("reader", { fps: 10, qrbox: 250 });
+        html5QrcodeScanner.start(cameraId, {}, onScanSuccess, onScanError)
+            .catch(err => {
+                resultContainer.textContent = `Unable to start QR scanner: ${err}`;
             });
-  
-            const html5QrcodeScanner = new Html5Qrcode("reader", { fps: 20, qrbox: 250 });
-            html5QrcodeScanner.start(cameraId, {}, onScanSuccess)
-                .catch(err => {
-                    resultContainer.textContent = `Unable to start QR scanner: ${err}`;
+    }
+
+    // Toggle camera
+    function flipCamera() {
+        if (html5QrcodeScanner) {
+            html5QrcodeScanner.stop().then(() => {
+                // Get the list of available cameras
+                Html5Qrcode.getCameras().then(cameras => {
+                    if (cameras && cameras.length > 1) {
+                        // Use the camera opposite to the current one
+                        const newCameraId = cameras[1 - cameras.findIndex(camera => camera.id === html5QrcodeScanner.getRunningCameraId())].id;
+                        startScanner(newCameraId);
+                    }
                 });
+            }).catch(err => {
+                console.error('Error stopping the QR scanner', err);
+            });
+        }
+    }
+
+    // On successful scan
+    function onScanSuccess(decodedText, decodedResult) {
+        if (!scannedCodes.has(decodedText)) {
+            scannedCodes.add(decodedText);
+            const newItem = document.createElement('li');
+            newItem.textContent = decodedText;
+            resultList.appendChild(newItem);
+        }
+    }
+
+    // On scan error
+    function onScanError(errorMessage) {
+        resultContainer.textContent = `Error scanning QR Code: ${errorMessage}`;
+    }
+
+    // Start scanning with the first available camera
+    Html5Qrcode.getCameras().then(cameras => {
+        if (cameras && cameras.length) {
+            startScanner(cameras[0].id);
         }
     }).catch(err => {
-        resultContainer.textContent = 'Error getting camera devices: ' + err;
+        console.error('Error getting camera devices', err);
     });
-  });
-  
+
+    // Show flip camera button for mobile devices
+    if (isMobileDevice()) {
+        flipCameraButton.style.display = 'block';
+        flipCameraButton.addEventListener('click', flipCamera);
+    }
+});
