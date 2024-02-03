@@ -1,0 +1,29 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#reader {
+    width: 100%;
+    max-width: 500px; /* Adjust based on your preference */
+    height: auto;
+}
+
+#qr-result, #result-list {
+    margin-top: 20px;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    #reader {
+        width: 90%; /* Use a percentage to make it responsive */
+        height: auto; /* Adjust height based on width to maintain aspect ratio */
+    }
+}
