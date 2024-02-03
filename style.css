@@ -8,15 +8,16 @@ body, html {
 }
 
 #reader {
-    max-width: 100%;
-    width: 500px; /* Adjust this value as needed */
-    height: 500px; /* Adjust this value as needed */
-    border: 1px solid #ccc; /* Optional: adds a border around the QR scanner */
+    width: 100%;
+    max-width: 500px; /* Adjust based on your preference */
+    height: auto;
 }
 
 #qr-result, #result-list {
     margin-top: 20px;
     text-align: center;
+    width: 100%;
+    max-width: 500px;
 }
 
 /* Responsive adjustments */

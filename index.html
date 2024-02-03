@@ -4,45 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QR Code Scanner</title>
-    <style>
-        body {
-            text-align: center;
-            font-family: Arial, sans-serif;
-        }
-
-        #reader {
-            max-width: 500px;
-            width: 100%;
-            margin: auto;
-        }
-
-        #result-list {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        #result-list li {
-            border: 1px solid #ddd;
-            margin-top: -1px; /* Prevent double borders */
-            background-color: #f6f6f6;
-            padding: 12px;
-            text-align: left;
-        }
-
-        @media (max-width: 600px) {
-            #reader {
-                width: 90%;
-                margin: auto;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>QR Code Scanner for Students</h1>
     <div id="reader"></div>
     <div id="qr-result">Scanning...</div>
     <ul id="result-list"></ul>
-
     <script src="https://cdn.jsdelivr.net/npm/html5-qrcode/minified/html5-qrcode.min.js"></script>
     <script src="app.js"></script>
 </body>
