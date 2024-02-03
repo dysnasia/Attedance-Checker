@@ -5,45 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QR Code Scanner</title>
     <style>
-        body {
-            text-align: center;
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
             font-family: Arial, sans-serif;
         }
 
         #reader {
-            max-width: 500px;
             width: 100%;
-            margin: auto;
+            max-width: 500px; /* Adjust based on your preference */
+            aspect-ratio: 1; /* Keeps a square aspect ratio */
         }
 
-        #result-list {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        #result-list li {
-            border: 1px solid #ddd;
-            margin-top: -1px; /* Prevent double borders */
-            background-color: #f6f6f6;
-            padding: 12px;
-            text-align: left;
-        }
-
-        @media (max-width: 600px) {
-            #reader {
-                width: 90%;
-                margin: auto;
-            }
+        #qr-result, #result-list {
+            margin-top: 20px;
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
         }
     </style>
 </head>
 <body>
-    <h1>QR Code Scanner for Students</h1>
-    <div id="reader"></div>
-    <div id="qr-result">Scanning...</div>
-    <ul id="result-list"></ul>
+    <div id="content">
+        <h1>QR Code Scanner</h1>
+        <div id="reader"></div>
+        <div id="qr-result">Scanning...</div>
+        <ul id="result-list"></ul>
+    </div>
 
+    <!-- Include the html5-qrcode library from a valid CDN -->
     <script src="https://cdn.jsdelivr.net/npm/html5-qrcode/minified/html5-qrcode.min.js"></script>
+    <!-- Your app.js script -->
     <script src="app.js"></script>
 </body>
 </html>
