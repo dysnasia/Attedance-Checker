@@ -1,0 +1,22 @@
+/* style.css */
+body, html {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+#reader {
+    width: 100%;
+    max-width: 500px; /* Adjust as needed */
+    margin-bottom: 20px;
+}
+
+#qr-result {
+    margin-top: 20px;
+    font-size: 18px;
+}
