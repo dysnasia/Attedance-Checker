@@ -16,15 +16,16 @@ document.addEventListener('DOMContentLoaded', function () {
         resultContainer.textContent = `Error scanning QR Code: ${errorMessage}`;
     }
 
+    // Start scanning with the first available camera
     const html5QrcodeScanner = new Html5Qrcode("reader", { fps: 10, qrbox: 250 });
     Html5Qrcode.getCameras().then(cameras => {
         if (cameras && cameras.length) {
             html5QrcodeScanner.start(cameras[0].id, {}, onScanSuccess, onScanError)
                 .catch(err => {
-                    console.error(`Unable to start QR scanner: ${err}`);
+                    resultContainer.textContent = `Unable to start QR scanner: ${err}`;
                 });
         }
     }).catch(err => {
-        console.error('Error getting camera devices', err);
+        resultContainer.textContent = 'Error getting camera devices: ' + err;
     });
 });
