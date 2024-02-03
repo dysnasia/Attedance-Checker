@@ -1,32 +1,22 @@
-// This assumes that QrScanner is a global class available from including qr-scanner.min.js in your HTML
-
-const video = document.getElementById('qr-video');
+const videoElement = document.getElementById('qr-video');
 const resultContainer = document.getElementById('qr-result');
 
-function onScanSuccess(decodedText, decodedResult) {
-    console.log(`Code matched = ${decodedText}`, decodedResult);
-    resultContainer.textContent = `Scan result: ${decodedText}`;
-    // Stop the scanner once you got the result to prevent multiple readings
-    scanner.stop();
-}
+let scanner = new Instascan.Scanner({ video: videoElement });
 
-function onScanError(errorMessage) {
-    // handle scan error
-    console.error(errorMessage);
-    resultContainer.textContent = 'Error scanning QR Code: ' + errorMessage;
-}
+scanner.addListener('scan', function (content) {
+    console.log('QR Code content:', content);
+    resultContainer.textContent = `Scan result: ${content}`;
+    scanner.stop(); // Stop scanning after the first scan
+});
 
-// Check if QrScanner is defined
-if (typeof QrScanner !== 'undefined') {
-    // Set the path to the worker script
-    QrScanner.WORKER_PATH = 'qr-scanner-worker.min.js';
-
-    const scanner = new QrScanner(video, onScanSuccess, onScanError);
-
-    scanner.start().catch(e => {
-        console.error(e);
-        resultContainer.textContent = 'Error starting scanner: ' + e;
-    });
-} else {
-    resultContainer.textContent = 'QrScanner library is not loaded!';
-}
+Instascan.Camera.getCameras().then(function (cameras) {
+    if (cameras.length > 0) {
+        scanner.start(cameras[0]);
+    } else {
+        console.error('No cameras found.');
+        resultContainer.textContent = 'No cameras found.';
+    }
+}).catch(function (e) {
+    console.error(e);
+    resultContainer.textContent = e;
+});
