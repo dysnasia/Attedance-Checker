@@ -7,8 +7,10 @@
 </head>
 <body>
     <h1>QR Code Scanner for Students</h1>
-    <div style="width: 500px" id="reader"></div>
+    <div id="reader" style="width: 500px; height: 500px;"></div>
     <div id="qr-result">Scanning...</div>
+    <!-- List to display QR code scan results -->
+    <ul id="result-list"></ul>
 
     <!-- Include the html5-qrcode library from a valid CDN -->
     <script src="https://cdn.jsdelivr.net/npm/html5-qrcode/minified/html5-qrcode.min.js"></script>
