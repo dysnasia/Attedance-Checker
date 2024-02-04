@@ -1,54 +1,57 @@
-let scannedCodes = []; // Array to hold scanned QR codes with date and time
+let scannedCodes = []; // Array to hold scanned QR codes
 
-// Function to start the QR code scanner
+function getFormattedTime() {
+    const now = new Date();
+    return now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit'});
+}
+
+function getDownloadFileName() {
+    const now = new Date();
+    return `${now.getDate()}-${now.getMonth() + 1}-${now.getFullYear()}_Attendance`.replace(/\//g, '-');
+}
+
 function startScanner() {
     const html5QrCode = new Html5Qrcode("reader");
-    const config = { fps: 10, qrbox: 250 };
+    const config = { fps: 30};
     html5QrCode.start({ facingMode: "environment" }, config, (qrCodeMessage) => {
-        // Get the current time
-        const currentTime = new Date().toLocaleTimeString();
-        // Store the scan with the QR code message and the current time
-        if (!scannedCodes.some(scan => scan.code === qrCodeMessage)) {
-            scannedCodes.push({ code: qrCodeMessage, time: currentTime });
+        const currentTime = getFormattedTime();
+        if (!scannedCodes.some(item => item.code === qrCodeMessage)) {
+            scannedCodes.push({ code: qrCodeMessage, time: currentTime }); // Add unique scans to the array
             displayScans(); // Update the display of scans
         }
     }).catch((err) => {
-        // handle camera access errors
         console.error(`Error starting QR scanner: ${err}`);
     });
 }
 
-// Function to display the list of scanned QR codes with time
 function displayScans() {
     const listElement = document.getElementById('scanned-list');
     listElement.innerHTML = ''; // Clear the list
 
-    scannedCodes.forEach((scan, index) => {
-        const item = document.createElement('li');
-        // Assuming scan object contains 'code' for the QR data and 'time' for the scan time
-        item.textContent = `${scan.code} - ${scan.time}`;
+    scannedCodes.forEach((item, index) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${item.code} - ${item.time}`;
         const removeButton = document.createElement('button');
         removeButton.textContent = 'Remove';
         removeButton.onclick = () => removeScan(index); // Remove scan on button click
-        item.appendChild(removeButton);
-        listElement.appendChild(item);
+        listItem.appendChild(removeButton);
+        listElement.appendChild(listItem);
     });
 }
 
-// Function to remove a scan from the list
 function removeScan(index) {
     scannedCodes.splice(index, 1); // Remove the scan at the specified index
     displayScans(); // Refresh the displayed list
 }
 
-// Function to download the list of scans as a CSV file, including date and time
 function downloadScans() {
-    const csvContent = "data:text/csv;charset=utf-8," + 
-        scannedCodes.map(entry => `${entry.code},${entry.dateTime}`).join("\n");
+    const rows = scannedCodes.map(item => [item.code, item.time].join(","));
+    rows.unshift('QR Code,Time Scanned'); // Adding header row
+    const csvContent = "data:text/csv;charset=utf-8," + rows.join("\n");
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "scanned_codes.csv");
+    link.setAttribute("download", getDownloadFileName() + ".csv");
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
