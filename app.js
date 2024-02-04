@@ -3,7 +3,7 @@ let scannedCodes = []; // Array to hold scanned QR codes
 // Function to start the QR code scanner
 function startScanner() {
     const html5QrCode = new Html5Qrcode("reader");
-    const config = { fps: 10, qrbox: 250 };
+    const config = { fps: 30};
     html5QrCode.start({ facingMode: "environment" }, config, (qrCodeMessage) => {
         if (!scannedCodes.includes(qrCodeMessage)) {
             scannedCodes.push(qrCodeMessage); // Add unique scans to the array
