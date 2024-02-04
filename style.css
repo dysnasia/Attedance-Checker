@@ -1,3 +1,4 @@
+/* Existing styles */
 body {
     background-color: #f5f5f5;
     font-family: 'Arial', sans-serif;
@@ -20,20 +21,72 @@ h1 {
 }
 
 #reader {
-    max-width: 100%; /* Significantly increased to occupy more screen width */
+    max-width: 95%;
     margin: auto;
     border: 1px solid #ccc;
-    padding: 40px; /* Increased padding to enlarge the box further */
+    padding: 40px;
     background-color: #fff;
 }
 
 @media (max-width: 600px) {
     #reader {
-        width: 100%; /* Ensure it takes up most of the screen on smaller devices */
-        padding: 20px; /* Adjust padding for smaller screens */
+        width: 95%;
+        padding: 20px;
     }
 
     .container {
         padding: 10px;
     }
+}
+
+/* New styles for list and buttons */
+#scanned-list {
+    list-style: none;
+    padding: 0;
+}
+
+#scanned-list li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#scanned-list li button {
+    background-color: #4CAF50; /* Green background */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#scanned-list li button:hover {
+    background-color: rgb(84, 141, 86); /* Darker green on hover */
+}
+/* Styling for the Download Scans button */
+.download-btn {
+    background-color: #4CAF50; /* Blue background */
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 20px 0; /* Add some margin for spacing */
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.download-btn:hover {
+    background-color: rgb(84, 141, 86); /* Darker blue on hover */
 }
