@@ -9,7 +9,7 @@
   </a>
 </p>
 
-> Now that I'm working for myself and have a lot more experience with programming. I have successfully made this project to be completely accessible through a website without the use of any hardware. I have made this project compatible for both mobile and laptops / desktops with webcams.
+> Now that I'm working by myself and have a lot more experience with programming. I have successfully made this project to be completely accessible through a website without the use of any hardware. I have made this project compatible for both mobile and laptops / desktops with webcams.
 > If there are any issues with the project please let me know in the issues tab. 
 
 ## Author
