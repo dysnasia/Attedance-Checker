@@ -1,15 +1,5 @@
 <h1 align="center">Welcome to Attendance-Checker 👋</h1>
 
-<p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-1.0-blue.svg?cacheSeconds=2592000" />
-  <a href="#" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
-  </a>
-  <a href="https://twitter.com/dysnasia" target="_blank">
-    <img alt="Twitter: dysnasia" src="https://img.shields.io/twitter/follow/dysnasia.svg?style=social" />
-  </a>
-</p>
-
 As I continue to work independently and gain more experience in programming, I'm pleased to announce the successful completion of this project, now fully accessible via a website without the need for additional hardware. I've ensured compatibility across various devices, including mobile phones and laptops/desktops equipped with webcams.
 
 To access the Attendance-Checker website, simply visit the following link:
@@ -28,7 +18,7 @@ Contributions are welcome! If you have any ideas, suggestions, or bug reports, p
 
 ## ❤️ Support
 
-If you find MoodleGPT helpful, consider giving it a ⭐️ or sharing it with your friends and colleagues. Your support is greatly appreciated!
+If you find Attendance-Checker helpful, consider giving it a ⭐️ or sharing it with your friends and colleagues. Your support is greatly appreciated!
 
 ## 📝 License
 
