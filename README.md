@@ -9,8 +9,9 @@
   </a>
 </p>
 
-> Now that I'm working by myself and have a lot more experience with programming. I have successfully made this project to be completely accessible through a website without the use of any hardware. I have made this project compatible for both mobile and laptops / desktops with webcams.
-> If there are any issues with the project please let me know in the issues tab. 
+As I continue to work independently and gain more experience in programming, I'm pleased to announce the successful completion of this project, now fully accessible via a website without the need for additional hardware. I've ensured compatibility across various devices, including mobile phones and laptops/desktops equipped with webcams.
+
+Should you encounter any issues with the project, please don't hesitate to let me know by raising them in the "Issues" tab. Your feedback is greatly appreciated!
 
 ## Author
 
