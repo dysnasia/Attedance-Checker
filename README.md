@@ -18,11 +18,22 @@ To access the Attendance-Checker website, simply visit the following link:
 
 Should you encounter any issues with the project, please don't hesitate to let me know by raising them in the "Issues" tab. Your feedback is greatly appreciated!
 
-## Author
+## 📖 Documentation
 
-👤 **Marcos Rosado**
+Check out the [documentation](docs/) for detailed instructions on how to use MoodleGPT, including setup guides, usage examples, and troubleshooting tips.
 
-* Twitter: [@dysnasia](https://twitter.com/dysnasia)
-* Github: [@dysnasia](https://github.com/dysnasia)
+## 🤝 Contributing
 
-Give a ⭐️ if this project helped you!
+Contributions are welcome! If you have any ideas, suggestions, or bug reports, please open an issue or submit a pull request.
+
+## ❤️ Support
+
+If you find MoodleGPT helpful, consider giving it a ⭐️ or sharing it with your friends and colleagues. Your support is greatly appreciated!
+
+## 📝 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+Made with ❤️ by [dysnasia](https://github.com/yourusername)
