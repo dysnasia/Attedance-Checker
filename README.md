@@ -8,10 +8,6 @@ To access the Attendance-Checker website, simply visit the following link:
 
 Should you encounter any issues with the project, please don't hesitate to let me know by raising them in the "Issues" tab. Your feedback is greatly appreciated!
 
-## 📖 Documentation
-
-Check out the [documentation](docs/) for detailed instructions on how to use MoodleGPT, including setup guides, usage examples, and troubleshooting tips.
-
 ## 🤝 Contributing
 
 Contributions are welcome! If you have any ideas, suggestions, or bug reports, please open an issue or submit a pull request.
